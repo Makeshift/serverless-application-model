@@ -1056,6 +1056,7 @@ class SamApi(SamResourceMacro):
         "StageName": PropertyType(True, one_of(is_str(), is_type(dict))),
         "Tags": PropertyType(False, is_type(dict)),
         "DefinitionBody": PropertyType(False, is_type(dict)),
+        "MergeGeneratedSwaggerWithDefinitionBody": PropertyType(False, is_type(bool)),
         "DefinitionUri": PropertyType(False, one_of(is_str(), is_type(dict))),
         "CacheClusterEnabled": PropertyType(False, is_type(bool)),
         "CacheClusterSize": PropertyType(False, is_str()),

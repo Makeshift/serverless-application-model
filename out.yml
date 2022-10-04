@@ -1,0 +1,38 @@
+---
+swagger: "2.0"
+info:
+  version: "1.0"
+  title: "test-generated-sam-stack"
+host: "9ni4kc15hf.execute-api.eu-west-2.amazonaws.com"
+basePath: "/Prod"
+schemes:
+- "https"
+paths:
+  /:
+    post:
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "newjob"
+        required: true
+        schema:
+          $ref: "#/definitions/newjob"
+      responses: {}
+      x-amazon-apigateway-request-validator: "body-and-params"
+      x-amazon-apigateway-integration:
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-west-2:099538280162:function:test-generated-sam-stack-NewJobFunction-lDEF7eveBYvh/invocations"
+        passthroughBehavior: "never"
+        type: "aws_proxy"
+definitions:
+  newjob:
+    type: "object"
+    properties:
+      threads:
+        type: "integer"
+        minimum: 1.0
+x-amazon-apigateway-request-validators:
+  body-and-params:
+    validateRequestParameters: true
+    validateRequestBody: true

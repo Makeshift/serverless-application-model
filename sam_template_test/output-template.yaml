@@ -1,0 +1,52 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: blah
+Resources:
+  ApiGatewayApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      MergeGeneratedSwaggerWithDefinitionBody: true
+      DefinitionBody:
+        components:
+          parameters:
+            requireContentTypeJson:
+              name: Content-Type
+              in: header
+              required: true
+              type: string
+              enum:
+              - application/json
+      Models:
+        NewJob:
+          $schema: http://json-schema.org/draft-04/schema#
+          type: object
+          properties:
+            threads:
+              type: integer
+              minimum: 1
+  NewJobFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://aws-sam-cli-managed-default-samclisourcebucket-of630yysq2us/3029ebfc0eca05c8e1261a974e8ef8e6
+      Handler: new_job.handler
+      Runtime: nodejs16.x
+      Events:
+        NewJob:
+          Type: Api
+          Properties:
+            Path: /
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+            RequestModel:
+              Model: NewJob
+              Required: true
+              ValidateBody: true
+              ValidateParameters: true
+            SchemaOverridesAtPath:
+              post:
+                parameters:
+                - $ref: '#/components/parameters/requireContentTypeJson'
+                x-amazon-apigateway-integration:
+                  passthroughBehavior: NEVER

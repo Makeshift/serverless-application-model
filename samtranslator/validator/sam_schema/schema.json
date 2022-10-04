@@ -44,6 +44,9 @@
             "DefinitionBody": {
               "type": "object"
             },
+            "MergeGeneratedSwaggerWithDefinitionBody": {
+              "type": "boolean"
+            },
             "DefinitionUri": {
               "anyOf": [
                 {
@@ -330,6 +333,9 @@
               "type": "object"
             }
           ]
+        },
+        "SchemaOverridesAtPath": {
+          "type": "object"
         }
       },
       "required": [
@@ -467,7 +473,7 @@
       "required": [
         "UserPool",
         "Trigger"
-      ],      
+      ],
       "type": "object"
     },
     "AWS::Serverless::Function.DynamoDBEvent": {
@@ -665,7 +671,6 @@
       ],
       "type": "object"
     },
-
     "AWS::Serverless::Function.SQSEvent": {
       "additionalProperties": false,
       "properties": {
@@ -673,7 +678,8 @@
           "type": "number"
         },
         "Queue": {
-          "anyOf": [{
+          "anyOf": [
+            {
               "type": "string"
             },
             {
@@ -793,15 +799,15 @@
         "Schedule": {
           "type": "string"
         },
-	"Name": {
-	  "type": "string"
-	},
-	"Description": {
-	  "type": "string"
-	},
-	"Enabled": {
-	  "type": "boolean"
-	}
+        "Name": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "Enabled": {
+          "type": "boolean"
+        }
       },
       "required": [
         "Schedule"

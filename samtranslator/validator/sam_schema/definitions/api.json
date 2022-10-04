@@ -43,7 +43,7 @@
                   "HEADER",
                   "AUTHORIZER"
                 ],
-                "type":"string"                                
+                "type": "string"
               },
               "BinaryMediaTypes": {
                 "items": {
@@ -90,6 +90,11 @@
                   "string",
                   "object",
                   "intrinsic"
+                ]
+              },
+              "MergeGeneratedSwaggerWithDefinitionBody": {
+                "type": [
+                  "boolean"
                 ]
               },
               "DefinitionUri": {
